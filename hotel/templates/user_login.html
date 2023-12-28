@@ -1,0 +1,81 @@
+{% load static %}
+{% block body %}
+<html>
+<head>
+<title>Hotel Booking Management System | Hotel :: Login Page</title>
+<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all">
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/responsiveslides.min.js' %}"></script>
+ <script>
+    $(function () {
+      $("#slider").responsiveSlides({
+      	auto: true,
+      	nav: true,
+      	speed: 500,
+        namespace: "callbacks",
+        pager: true,
+      });
+    });
+  </script>
+
+</head>
+<body>
+		<!--header-->
+			<div class="header head-top">
+				<div class="container">
+			{% include 'header.html' %}
+		</div>
+</div>
+<!--header-->
+		<!--about-->
+
+			<div class="content">
+				<div class="contact">
+				<div class="container">
+
+					<h2>If you have an account with us, please log in.</h2>
+					<br>
+				<div class="contact-grids">
+
+						<div class="col-md-6 contact-right">
+							<form method="post">
+                            {% csrf_token%}
+								<h5>Email Address</h5>
+								<input type="email" class="form-control" value="" name="email" required="true">
+								<h5>Password</h5>
+								<input type="password" value="" class="form-control" name="password" required="true">
+
+								<br/>
+								 <input type="submit" value="Login" name="login">
+						 	 </form>
+
+						</div>
+						<div class="col-md-6">
+						<img src="{% static 'images/loginside.jpg' %}" style="margin-top:20px ; height : 350px ; width : 100% ; border : 2px inset black" >
+						</div>
+
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+		{% include 'getintouch.html' %}
+			</div>
+			{% include 'footer.html' %}
+</html>
+{% if error == "no" %}
+<script>
+    alert('Login Successfull');
+    window.location=('{% url 'index' %}')
+</script>
+{% endif %}
+{% if error == "yes" %}
+<script>
+    alert('Invalid Login Credentials , Try Again...');
+</script>
+{% endif %}
+
+{% endblock %}

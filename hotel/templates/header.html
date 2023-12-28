@@ -1,0 +1,57 @@
+    <div class="header-top">
+                        <nav class="navbar navbar-default">
+                            <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header">
+                                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                            <span class="sr-only">Toggle navigation</span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                      </button>
+                                    <div class="navbar-brand">
+                                        <h1><a href="index.php">HBMS</a></h1>
+                                    </div>
+                                </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                              <ul class="nav navbar-nav">
+                                    <li class="active"><a href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a></li>
+                                    <li><a href="{% url 'about' %}">About</a></li>
+                                    <li><a href="{% url 'facility' %}">Facilities</a></li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Rooms <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    {% for i in category %}
+                                   <li><a href="{% url 'category_details' i.id %}">{{i.categoryname}}</a></li>
+                                    {% endfor %}
+                                </ul>
+                                    </li>
+                                    <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                                    {% if not request.user.is_authenticated %}
+                                    <li><a href="{% url 'admin_login' %}">Admin</a></li>
+
+                                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                                    <li><a href="{% url 'user_login' %}">Login</a></li>
+                                  {% endif %}
+                                     {% if request.user.is_authenticated %}
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                                    <li><a href="{% url 'mybooking' %}">My Booking</a></li>
+                                    <li><a href="{% url 'changepassworduser' %}">Change Password</a></li>
+                                    <li><a href="{% url 'logout' %}">Logout</a></li>
+
+                                </ul>
+                                    </li>
+                                  {% endif %}
+                                </ul>
+
+                            </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+                        </nav>
+
+                    </div>

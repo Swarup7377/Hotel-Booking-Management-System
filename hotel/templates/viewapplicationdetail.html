@@ -1,0 +1,171 @@
+{% load static %}
+{% block body %}
+<html>
+<head>
+<title>Hotel Booking Management System | Hotel :: View Booking Detail</title>
+<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all">
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/responsiveslides.min.js' %}"></script>
+ <script>
+    $(function () {
+      $("#slider").responsiveSlides({
+      	auto: true,
+      	nav: true,
+      	speed: 500,
+        namespace: "callbacks",
+        pager: true,
+      });
+    });
+  </script>
+
+</head>
+<body>
+		<!--header-->
+			<div class="header head-top">
+				<div class="container">
+	{% include 'header.html' %}
+		</div>
+</div>
+<!--header-->
+		<!-- typography -->
+	<div class="typography">
+			<!-- container-wrap -->
+			<div class="container">
+				<div class="typography-info">
+					<h2 class="type">My Hotel Booking Detail</h2>
+				</div>
+
+				<div class="bs-docs-example">
+
+
+                            <table border="1" class="table table-bordered table-striped table-vcenter js-dataTable-full-pagination">
+                            	<tr>
+  <th colspan="4" style="color: red;font-weight: bold;text-align: center;font-size: 20px"> Booking Number: {{book.bookingnumber}}</th>
+</tr>
+<tr>
+  <th colspan="4" style="color: blue;font-weight: bold;font-size: 15px"> Booking Detail:</th>
+</tr>
+<tr>
+    <th>Customer Name</th>
+    <td>{{request.user.first_name}}</td>
+    <th>Mobile Number</th>
+    <td>{{request.user.last_name}}</td>
+  </tr>
+
+
+  <tr>
+
+   <th>Email</th>
+    <td>{{request.user.username}}</td>
+    <th>ID Type</th>
+    <td>{{book.idtype}}</td>
+  </tr>
+  <tr>
+
+   <th>Gender</th>
+    <td>{{book.gender}}</td>
+    <th>Address</th>
+    <td>{{book.address}}</td>
+  </tr>
+  <tr>
+    <th>Check in Date</th>
+    <td>{{book.checkindate}}</td>
+    <th>Check out Date</th>
+    <td>{{book.checkoutdate}}</td>
+  </tr>
+
+   <tr>
+    <tr>
+  <th colspan="4" style="color: blue;font-weight: bold;font-size: 15px"> Room Detail:</th>
+</tr>
+    <th>Room Type</th>
+    <td>{{book.roomid.roomtype.categoryname}}</td>
+    <th>Room Price(perday)</th>
+    <td>{{book.roomid.roomtype.price}} Rs.</td>
+  </tr>
+
+ <tr>
+
+    <th>Room Name</th>
+    <td>{{book.roomid.roomname}}</td>
+    <th>Room Description</th>
+    <td>{{book.roomid.roomdescription}}</td>
+  </tr>
+   <tr>
+
+    <th>Max Adult</th>
+    <td>{{book.roomid.maxadult}}</td>
+    <th>Max Child</th>
+    <td>{{book.roomid.maxchild}}</td>
+  </tr>
+<tr>
+
+   <th>No.of Bed</th>
+    <td>{{book.roomid.noofbed}}</td>
+    <th>Room Image</th>
+    <td><img src="{{book.roomid.image.url}}" width="100" height="100" ></td>
+  </tr>
+   <tr>
+
+     <th>Room Facility</th>
+    <td>{{book.roomid.roomfacility}}</td>
+    <th>Booking Date</th>
+    <td>{{book.bookingdate}}</td>
+  </tr>
+   <tr>
+  <th colspan="4" style="color: blue;font-weight: bold;font-size: 15px"> Admin Remarks:</th>
+</tr>
+  <tr>
+
+     <th>Order Final Status</th>
+
+    <td>
+
+{% if book.status == "Approved" %}
+  Your Booking has been approved
+{% endif %}
+
+{% if book.status == "Cancelled" %}
+ Your Booking has been cancelled
+{% endif %}
+
+
+{% if book.status == "" %}
+  Not Response Yet;
+{% endif %}
+
+
+     </td>
+     <th >Admin Remark</th>
+    {% if book.status == "" %}
+
+                     <td>Not Updated Yet</td>
+{% else %}
+      <td>{{book.status}}
+                  </td>
+                  {% endif %}
+  </tr>
+
+
+
+
+</table>
+<a href="{% url 'invoice' book.id %}" class="btn btn-success">Invoice</a>
+				</div>
+
+			</div>
+			<!-- //container-wrap -->
+	</div>
+	<!-- //typography -->
+
+			{% include 'getintouch.html' %}
+			</div>
+			<!--footer-->
+				{% include 'footer.html' %}
+</body>
+</html>
+{% endblock %}

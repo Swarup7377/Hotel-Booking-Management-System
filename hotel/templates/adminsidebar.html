@@ -1,0 +1,68 @@
+    <div class="sidebar-menu">
+                    <header class="logo1">
+                      <span style="color:#000; font-size:26px; font-weight:bold">HBMS</span>
+                        <a href="#" class="sidebar-icon"><span class="fa fa-bars"></span> </a>
+                    </header>
+                        <div style="border-top:1px ridge rgba(255, 255, 255, 0.15)"></div>
+                           <div class="menu">
+                                    <ul id="menu" >
+                                        <li><a href="{% url 'dashboard' %}"><i class="fa fa-tachometer"></i> <span>Home</span></a></li>
+                                         <li id="menu-academico" ><a href="#"><i class="fa fa-table"></i> <span> Room Category</span> <span class="fa fa-angle-right" style="float: right"></span></a>
+                                           <ul id="menu-academico-sub" >
+                                           <li id="menu-academico-avaliacoes" ><a href="{% url 'add_category' %}">Add Category</a></li>
+                                            <li id="menu-academico-avaliacoes" ><a href="{% url 'manage_category' %}">Manage Catgeory</a></li>
+
+                                          </ul>
+                                        </li>
+                                          <li id="menu-academico" ><a href="#"><i class="lnr lnr-layers"></i> <span>Facility</span> <span class="fa fa-angle-right" style="float: right"></span></a>
+                                         <ul id="menu-academico-sub" >
+                                            <li id="menu-academico-avaliacoes" ><a href="{% url 'add_facility' %}">Add Facility</a></li>
+                                            <li id="menu-academico-boletim" ><a href="{% url 'manage_facility' %}">Manage Facility</a></li>
+
+                                          </ul>
+                                     </li>
+                                      <li id="menu-academico" ><a href="#"><i class="lnr lnr-pencil"></i> <span>New Room</span> <span class="fa fa-angle-right" style="float: right"></span></a>
+                                         <ul id="menu-academico-sub" >
+                                            <li id="menu-academico-avaliacoes" ><a href="{% url 'add_room' %}">Add Room</a></li>
+                                            <li id="menu-academico-boletim" ><a href="{% url 'manage_room' %}">Manage Room</a></li>
+
+                                          </ul>
+                                     </li>
+
+                                     <li id="menu-academico" ><a href="#"><i class="lnr lnr-book"></i> <span>Booking</span> <span class="fa fa-angle-right" style="float: right"></span></a>
+                                         <ul id="menu-academico-sub" >
+                                            <li id="menu-academico-avaliacoes" ><a href="{% url 'all_booking' %}">All Booking</a></li>
+                                            <li id="menu-academico-boletim" ><a href="{% url 'newbooking' %}">New Booking</a></li>
+                                            <li id="menu-academico-boletim" ><a href="{% url 'approved_booking' %}">Approved Booking</a></li>
+                                            <li id="menu-academico-boletim" ><a href="{% url 'cancelled_booking' %}">Cancelled Booking</a></li>
+
+                                          </ul>
+                                     </li>
+                                    <li><a href="{% url 'reg_users' %}"><i class="lnr lnr-users"></i> <span>Reg Users</span></a></li>
+                                    <li id="menu-academico" ><a href="#"><i class="lnr lnr-book"></i> <span>Enquiry</span> <span class="fa fa-angle-right" style="float: right"></span></a>
+                                         <ul id="menu-academico-sub" >
+                                            <li id="menu-academico-avaliacoes" ><a href="{% url 'read_enquiry' %}">Read Enquiry</a></li>
+                                            <li id="menu-academico-boletim" ><a href="{% url 'unread_enquiry' %}">Unread Enquiry</a></li>
+
+                                          </ul>
+                                     </li>
+                                      <li id="menu-academico" ><a href="#"><i class="fa fa-file-text-o"></i> <span>Search</span> <span class="fa fa-angle-right" style="float: right"></span></a>
+                                         <ul id="menu-academico-sub" >
+                                            <li id="menu-academico-avaliacoes" ><a href="{% url 'search_enquiry' %}">Search Enquiry</a></li>
+                                            <li id="menu-academico-boletim" ><a href="{% url 'search_booking' %}">Search Booking</a></li>
+
+                                          </ul>
+                                     </li>
+
+
+                                    <li id="menu-academico" ><a href="#"><i class="lnr lnr-layers"></i> <span>Reports</span> <span class="fa fa-angle-right" style="float: right"></span></a>
+                                         <ul id="menu-academico-sub" >
+                                            <li id="menu-academico-avaliacoes" ><a href="{% url 'enquirybetweendate_report' %}">Enquiry B/W Reports</a></li>
+                                            <li id="menu-academico-boletim" ><a href="{% url 'bookingbetweendate_report' %}">Booking B/W Reports</a></li>
+
+                                          </ul>
+                                     </li>
+
+                                  </ul>
+                                </div>
+                              </div>

@@ -1,0 +1,76 @@
+{% load static %}
+{% block body %}
+<html>
+<head>
+<title>Hotel Booking Management System | Hotel :: Single Rooms</title>
+<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all">
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="{% static 'css/lightbox.css' %}">
+
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/responsiveslides.min.js' %}"></script>
+ <script>
+    $(function () {
+      $("#slider").responsiveSlides({
+      	auto: true,
+      	nav: true,
+      	speed: 500,
+        namespace: "callbacks",
+        pager: true,
+      });
+    });
+  </script>
+
+</head>
+<body>
+		<!--header-->
+			<div class="header head-top">
+				<div class="container">
+				 {% include 'header.html' %}
+		</div>
+</div>
+<!--header-->
+		<!--rooms-->
+			<div class="content">
+					<div class="room-section">
+						<div class="container">
+						<h2>Rooms Details</h2>
+							<div class="room-grids">
+								  {% for i in room %}
+
+							<div class="room1">
+								<div class="col-md-5 room-grid" style="padding-bottom: 50px">
+								<a href="#" class="mask">
+									<img src="{{i.image.url}}" class=" mask img-responsive zoom-img" alt="" /></a>
+
+								</div>
+								<div class="col-md-7 room-grid1">
+									<h4> {{i.roomname}} </h4>
+									<p>{{i.roomdescription}}</p>
+									<p>Max Adult : {{i.maxadult}}</p>
+									<p>Max Child : {{i.maxchild}}</p>
+									<p>No of Beds : {{i.noofbed}}</p>
+									<p>Room Facilities : {{i.roomfacility}}</p>
+									<p>Price : {{i.roomtype.price}}</p>
+									<button class="btn btn-success"><a href="{% url 'book_room' i.id %}">Book</a></button>
+								</div>
+
+								<div class="clearfix"></div>
+							</div>
+                                  {% endfor %}
+
+
+						<div class="clearfix"></div>
+						</div>
+					</div>
+				</div>
+				<!--rooms-->
+				 {% include 'getintouch.html' %}
+			</div>
+			<!--footer-->
+				{% include 'footer.html' %}
+</body>
+</html>
+{% endblock %}

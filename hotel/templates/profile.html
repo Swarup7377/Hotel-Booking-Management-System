@@ -1,0 +1,88 @@
+{% load static %}
+{% block body %}
+<html>
+<head>
+<title>Hotel Booking Management System | Hotel :: Profile</title>
+<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all">
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/responsiveslides.min.js' %}"></script>
+ <script>
+    $(function () {
+      $("#slider").responsiveSlides({
+      	auto: true,
+      	nav: true,
+      	speed: 500,
+        namespace: "callbacks",
+        pager: true,
+      });
+    });
+  </script>
+
+</head>
+<body>
+		<!--header-->
+			<div class="header head-top">
+				<div class="container">
+			 {% include 'header.html' %}
+		</div>
+</div>
+<!--header-->
+		<!--about-->
+
+			<div class="content">
+				<div class="contact">
+				<div class="container">
+
+					<h2>View Your Profile !!!!!!</h2>
+
+				<div class="contact-grids">
+
+						<div class="col-md-6 contact-right">
+							<form method="post">
+                            {% csrf_token%}
+								<h5>Full Name</h5>
+								<input type="text" value="{{user.first_name}}" name="fname" required="true" class="form-control">
+								<h5>Mobile Number</h5>
+								<input type="text" name="contactnumber" class="form-control" required="true" maxlength="10" pattern="[0-9]+" value="{{user.last_name}}">
+								<h5>Email Address</h5>
+								<input type="email" class="form-control" value="{{user.username}}" name="email" required="true" readonly='true'>
+
+								<br />
+
+								<br/>
+								 <input type="submit" value="Update" name="submit">
+						 	 </form>
+
+						</div>
+						<div class="col-md-6 contact-right">
+
+						 	 <img src="{% static 'images/img.jpg' %}" width="400" height="400" />
+
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+		        {% include 'getintouch.html' %}
+			</div>
+			    {% include 'footer.html' %}
+</html>
+
+{% if error == "no" %}
+<script>
+    alert('Profile has been updated');
+    window.location=('{% url 'profile' %}')
+</script>
+{% endif %}
+{% if error == "yes" %}
+<script>
+    alert('Something Went Wrong , Try Again...');
+</script>
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,86 @@
+{% load static %}
+{% block body %}
+<html>
+<head>
+<title>Hotel Booking Management System | Hotel :: Sign Up</title>
+<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all">
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/responsiveslides.min.js' %}"></script>
+ <script>
+    $(function () {
+      $("#slider").responsiveSlides({
+      	auto: true,
+      	nav: true,
+      	speed: 500,
+        namespace: "callbacks",
+        pager: true,
+      });
+    });
+  </script>
+
+</head>
+<body>
+		<!--header-->
+			<div class="header head-top">
+				<div class="container">
+			{% include 'header.html' %}
+		</div>
+</div>
+<!--header-->
+		<!--about-->
+
+			<div class="content">
+				<div class="contact">
+				<div class="container">
+
+					<h2>REGISTERED With Us</h2>
+
+				<div class="contact-grids">
+
+						<div class="col-md-6 contact-right">
+							<form method="post">
+								{% csrf_token %}
+								<h5>Full Name</h5>
+								<input type="text" value="" name="fname" required="true" class="form-control">
+								<h5>Mobile Number</h5>
+								<input type="text" name="mobno" class="form-control" required="true" maxlength="10" pattern="[0-9]+">
+								<h5>Email Address</h5>
+								<input type="email" class="form-control" value="" name="email" required="true">
+								<h5>Password</h5>
+								<input type="password" value="" class="form-control" name="password" required="true">
+								<br />
+								<a href="{% url 'user_login' %}" style="color: red">Signin</a>
+								<br/>
+								 <input type="submit" value="Sign Up" name="submit">
+						 	 </form>
+						</div>
+						<div class="col-md-6">
+						<img src="{% static 'images/inside-reception.jpg' %}" style="margin-top:20px ; height : 350px ; width : 100% ; border : 2px inset black" >
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+		{% include 'getintouch.html' %}
+			</div>
+			{% include 'footer.html' %}
+</html>
+
+{% if error == "no" %}
+<script>
+    alert('You have successfully registered with us');
+    window.location=('{% url 'user_login' %}')
+</script>
+{% endif %}
+{% if error == "yes" %}
+<script>
+    alert('Something Went Wrong , Try Again...');
+</script>
+{% endif %}
+
+
+{% endblock %}

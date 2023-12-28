@@ -1,0 +1,103 @@
+{% load static %}
+{% block body %}
+<html>
+<head>
+<title>Hotel Booking Management System | Hotel :: Book Room</title>
+<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all">
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/responsiveslides.min.js' %}"></script>
+ <script>
+    $(function () {
+      $("#slider").responsiveSlides({
+      	auto: true,
+      	nav: true,
+      	speed: 500,
+        namespace: "callbacks",
+        pager: true,
+      });
+    });
+  </script>
+
+</head>
+<body>
+		<!--header-->
+			<div class="header head-top">
+				<div class="container">
+			{% include 'header.html' %}
+		</div>
+</div>
+<!--header-->
+		<!--about-->
+
+			<div class="content">
+				<div class="contact">
+				<div class="container">
+					<h2>Book Your Room</h2>
+
+				<div class="contact-grids">
+
+						<div class="col-md-6 contact-right">
+							<form method="post">
+					{% csrf_token %}
+
+								</select>
+
+								<h5>Name</h5>
+								<input type="text"  value="{{user.first_name}}" name="name" class="form-control" required="true" readonly="true">
+								<h5>Mobile Number</h5>
+								<input type="text" name="phone" class="form-control" required="true" maxlength="10" pattern="[0-9]+" value="{{user.last_name}}" readonly="true">
+								<h5>Email Address</h5>
+								<input  type="email" value="{{user.username}}" class="form-control" name="email" required="true" readonly="true">
+								<h5>ID Type</h5>
+								<select  type="text" value="" class="form-control" name="idtype" required="true" class="form-control">
+									<option value="">Choose ID Type</option>
+									<option value="Voter Card">Voter Card</option>
+									<option value="Adhar Card">Adhar Card</option>
+									<option value="Driving Licence Card">Driving Licence Card</option>
+									<option value="Passport">Passport</option>
+									</select>
+									<h5>Gender</h5>
+								 <p style="text-align: left;"> <input type="radio"  name="gender" id="gender" value="Female" checked="true">Female</p>
+
+                                 <p style="text-align: left;"> <input type="radio" name="gender" id="gender" value="Male">Male</p>
+
+								<h5>Address</h5>
+								 <textarea type="text" rows="10" name="address" required="true"></textarea>
+								 <h5>Checkin Date</h5>
+								<input  type="date" value="" class="form-control" name="checkindate" required="true">
+								<h5>Checkout Date</h5>
+								<input  type="date" value="" class="form-control" name="checkoutdate" required="true">
+
+								 <input type="submit" value="send" name="submit">
+						 	 </form>
+						</div>
+						<div class="col-md-5">
+						<img src="{% static 'images/waiter.jpg' %}">
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+		{% include 'getintouch.html' %}
+			</div>
+		{% include 'footer.html' %}
+</html>
+
+{% if error == "no" %}
+<script>
+    alert("Your room has been book successfully. Booking Number is {{bn}}");
+	window.location=('{% url 'mybooking' %}');
+</script>
+{% endif %}
+{% if error == "yes" %}
+<script>
+    alert('Something Went Wrong. Please try again');
+</script>
+{% endif %}
+
+
+{% endblock %}

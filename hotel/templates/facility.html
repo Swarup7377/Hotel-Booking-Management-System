@@ -1,0 +1,71 @@
+{% load static %}
+
+{% block body %}
+<html>
+<head>
+<title>Hotel Booking Management System | Hotel :: Facilities</title>
+<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all">
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/responsiveslides.min.js' %}"></script>
+ <script>
+    $(function () {
+      $("#slider").responsiveSlides({
+      	auto: true,
+      	nav: true,
+      	speed: 500,
+        namespace: "callbacks",
+        pager: true,
+      });
+    });
+  </script>
+
+</head>
+<body>
+		<!--header-->
+			<div class="header head-top">
+				<div class="container">
+	{% include 'header.html' %}
+		</div>
+</div>
+<!--header-->
+		<!--services-->
+		<div class="content">
+			<div class="services">
+	<div class="container">
+		<div class="services-main">
+				<h2>Facilities</h2>
+			<div class="services1">
+				{% for i in fac %}
+				<div class="col-md-6 services-grid">
+					<br />
+					<div class="col-md-5 serv-img">
+						<img src="{{i.image.url}}" height="300" width="300" alt="" class="img-responsive">
+					</div><br />
+					<div class="col-md-6 serv-text">
+						<h4>{{i.facilitytitle}}</h4>
+						<p>{{i.description}} </p>
+					</div>
+				  <div class="clearfix"> </div>
+				</div>
+                {% endfor %}
+
+
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+			{% include 'getintouch.html' %}
+
+			</div>
+			<!--footer-->
+				{% include 'footer.html' %}
+</body>
+</html>
+{% endblock %}

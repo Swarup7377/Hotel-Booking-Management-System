@@ -1,0 +1,56 @@
+{% load static %}
+
+{% block body %}
+<html>
+<head>
+<title>Hotel Booking Management System | Hotel :: Gallery</title>
+<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all">
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="{% static 'css/lightbox.css' %}">
+
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+</head>
+<body>
+		<!--header-->
+			<div class="header head-top">
+				<div class="container">
+			{% include 'header.html' %}
+		</div>
+</div>
+<!--header-->
+		<div class="content">
+			<!-- gallery -->
+	<div class="gallery-top">
+			<!-- container -->
+			<div class="container">
+				<div class="gallery-info">
+					<h2>gallery</h2>
+				</div>
+				<div class="gallery-grids-top">
+					<div class="gallery-grids">
+						{% for i in room  %}
+						<div class="col-md-3 gallery-grid">
+							<br />
+							<a class="example-image-link" href="{{i.image.url}}" data-lightbox="example-set" data-title=""><img class="example-image" src="{{i.image.url}}" height="300" width="300" alt=""/></a>
+						</div>
+{% endfor %}
+
+						<div class="clearfix"> </div>
+					</div>
+
+					<script src="{% static 'js/lightbox-plus-jquery.min.js' %}"></script>
+				</div>
+			</div>
+			<!-- //container -->
+	</div>
+	<!-- //gallery -->
+
+				{% include 'getintouch.html' %}
+			</div>
+			<!--footer-->
+						{% include 'footer.html' %}
+</body>
+</html>
+{% endblock %}

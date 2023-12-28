@@ -1,0 +1,93 @@
+{% load static %}
+{% block body %}
+<html>
+<head>
+<title>Hotel Booking Management System | Hotel :: My Booking</title>
+<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all">
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/responsiveslides.min.js' %}"></script>
+ <script>
+    $(function () {
+      $("#slider").responsiveSlides({
+      	auto: true,
+      	nav: true,
+      	speed: 500,
+        namespace: "callbacks",
+        pager: true,
+      });
+    });
+  </script>
+
+</head>
+<body>
+		<!--header-->
+			<div class="header head-top">
+				<div class="container">
+	{% include 'header.html' %}
+		</div>
+</div>
+<!--header-->
+		<!-- typography -->
+	<div class="typography">
+			<!-- container-wrap -->
+			<div class="container">
+				<div class="typography-info">
+					<h2 class="type">My Hotel Booking Detail</h2>
+				</div>
+
+				<div class="bs-docs-example">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Booking Number</th>
+								<th>Name</th>
+								<th>Mobile Number</th>
+								<th>Email</th>
+								<th>Status</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+
+                              {% for i in book %}
+
+							<tr>
+								<td>{{forloop.counter}}</td>
+								<td>{{i.bookingnumber}}</td>
+								<td>{{request.user.first_name}}</td>
+								<td>{{request.user.last_name}}</td>
+								<td>{{request.user.username}}</td>
+								{% if i.status == "" %}
+
+                     <td>Still Pending</td>
+
+                                {% else %}
+                                <td>{{i.status}}
+                  </td>
+                 {% endif %}
+							 <td><a href="{% url 'viewapplicationdetail' i.id %}" class="btn btn-danger">View</a>
+                                                    </td>
+							</tr>
+							{% endfor %}
+
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+			<!-- //container-wrap -->
+	</div>
+	<!-- //typography -->
+
+			{% include 'getintouch.html' %}
+			</div>
+			<!--footer-->
+				{% include 'footer.html' %}
+</body>
+</html>
+{% endblock %}

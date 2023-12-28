@@ -1,0 +1,92 @@
+{% load static %}
+{% block body %}
+<html>
+<head>
+<title>Hotel Booking Management System | Hotel :: Contact Us</title>
+<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all">
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/responsiveslides.min.js' %}"></script>
+ <script>
+    $(function () {
+      $("#slider").responsiveSlides({
+      	auto: true,
+      	nav: true,
+      	speed: 500,
+        namespace: "callbacks",
+        pager: true,
+      });
+    });
+  </script>
+
+</head>
+<body>
+		<!--header-->
+			<div class="header head-top">
+				<div class="container">
+			{% include 'header.html' %}
+		</div>
+</div>
+<!--header-->
+		<!--about-->
+
+			<div class="content">
+				<div class="contact">
+				<div class="container">
+					<h2>contact us</h2>
+					<br>
+				<div class="contact-grids">
+					<div class="col-md-6 contact-left">
+<p>We have 72 comfortably equipped rooms,
+    including two suites: The President Suite and the Ambassador Suite, with over one hundred
+    metres of surface area, which are sure to awe even the most demanding Guests. We offer 7 rooms,
+    where we have been preparing family and business meetings already for 15 years.</p>
+							<address>
+								<p>Contact Us</p>
+								<p>MAYFAIR, Rourkela</p>
+
+								<p>Telephone : +91 7788870676</p>
+
+								<p>E-mail : reservations@mayfairhotels.com</p>
+							</address>
+					</div>
+						<div class="col-md-6 contact-right">
+							<form method="post">
+                                {% csrf_token %}
+								<h5>Name</h5>
+								<input type="text"  type="text" value="" name="name" required="true">
+								<h5>Mobile Number</h5>
+								<input type="text" name="phone" required="true" maxlength="10" pattern="[0-9]+">
+								<h5>Email Address</h5>
+								<input type="text" type="email" value="" name="email" required="true">
+								<h5>Message</h5>
+								 <textarea rows="10" name="message" required="true"></textarea>
+								 <input type="submit" value="send" name="submit">
+						 	 </form>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+		{% include 'getintouch.html' %}
+			</div>
+		{% include 'footer.html' %}
+</html>
+
+{% if error == "no" %}
+<script>
+    alert('Your Message Has Been Sent. We Will Contact You Soon');
+</script>
+{% endif %}
+{% if error == "yes" %}
+<script>
+    alert('Something Went Wrong, Try Again...');
+</script>
+{% endif %}
+
+
+
+{% endblock %}
